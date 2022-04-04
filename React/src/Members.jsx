@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import Logout from './Logout';
 
 const Members = () => {
     const [details, setDetails] = useState([]);
+    const navigate = useNavigate();
     let getToken = localStorage.getItem('token');
     getToken = getToken.replace('"', '');
     getToken = getToken.replace('"', '');

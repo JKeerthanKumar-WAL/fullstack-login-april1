@@ -111,13 +111,17 @@ exports.editUser = [
     } catch (err) {
       console.log(err);
     }
-    const sqlQuery = `UPDATE user SET name="${name}", email="${email}",password="${encryptedPassword}", age=${age}, dob="${dob}" where id="${id}"`;
-    connector.query(sqlQuery, function (err, results, fields) {
-      if (err) {
-        res.json(err);
-      } else {
-        res.json(results);
+    const sql = `UPDATE user SET name=?, email=?,password=?, age=?, dob=? where id="${id}"`;
+    connector.query(
+      sql,
+      [name, email, encryptedPassword, age, dob],
+      (err, results, fields) => {
+        if (err) {
+          res.json(err);
+        } else {
+          res.json(results);
+        }
       }
-    });
+    );
   },
 ];
