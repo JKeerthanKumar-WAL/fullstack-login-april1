@@ -1,10 +1,9 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import Logout from './Logout';
 
 const Members = () => {
     const [details, setDetails] = useState([]);
-    const navigate = useNavigate();
     let getToken = localStorage.getItem('token');
     getToken = getToken.replace('"', '');
     getToken = getToken.replace('"', '');
@@ -23,18 +22,9 @@ const Members = () => {
                 console.log(err);
             });
     }, []);
-    const clearAll = () => {
-        localStorage.clear();
-        navigate('/reglogin');
-    };
     return (
         <div className="table table-bordered table-striped">
-            <h1 className="buttonHeading">
-                <span className="heading">Show Details</span>
-                <button className="btn btn-outline-primary" onClick={clearAll}>
-                    <b>Log Out</b>
-                </button>
-            </h1>
+            <Logout />
             <br />
             <table className="table-data text-center">
                 <tr>
